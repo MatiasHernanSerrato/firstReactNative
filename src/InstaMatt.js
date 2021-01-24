@@ -6,9 +6,18 @@ const InstaMatt = () => {
 	return (
 		<View style={styles.container}>
 			<View style={styles.tempNav}><Text>InstaMatt</Text></View>
+			<View style={styles.userBar}>
+				<View style={{flexDirection: 'row'}}>
+					<Image
+						style={styles.profilePicture}
+						source={{uri: 'https://i.pinimg.com/280x280_RS/ed/ec/78/edec78ac2d3e5ea21020e946c54ae227.jpg'}}
+						></Image>
+					<Text>Mili Pili</Text>
+				</View>
+			</View>
 			<Image
 				style={styles.imageSize}
-			 	source={{uri: 'https://plantillasdememes.com/img/plantillas/wey-ya21580921268.jpg'}}
+			 	source={{uri: 'https://www.collabary.com/wp-content/uploads/2017/06/Break-The-Instagram-%E2%80%93-How-To-Capture-And-Create-The-Perfect-Influencer-Photo.jpg'}}
 			/>
 		</View>
 	);
@@ -20,11 +29,19 @@ const styles = StyleSheet.create({
     width: 100 + '%',
     height: 100 + '%',
 	},
+	userBar: {
+		width: 100 + '%',
+		height: 50,
+		backgroundColor: 'rgb(255, 255, 255)',
+		flexDirection: 'row',
+		alignItems: 'center'
+	},
 	tempNav: {
 		width: 100 + '%',
+		// alignSelf: 'stretch', in order to avoid the width with the % symbol
 		height: 55,
 		marginTop: 25,
-		backgroundColor: "rgb(250, 250, 250)",
+		backgroundColor: 'rgb(250, 250, 250)',
 		borderBottomColor: 'rgb(233,233,233)',
 		borderBottomWidth: StyleSheet.hairlineWidth,
 		justifyContent: 'center',
@@ -32,6 +49,9 @@ const styles = StyleSheet.create({
 	},
 	imageSize: {
 		width: 100 + '%', height: 100
+	},
+	profilePicture: {
+		width: 40, height: 40
 	}
 });
 
