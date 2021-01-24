@@ -7,7 +7,7 @@ const InstaMatt = () => {
 		<View style={styles.container}>
 			<View style={styles.tempNav}><Text>InstaMatt</Text></View>
 			<View style={styles.userBar}>
-				<View style={{flexDirection: 'row'}}>
+				<View style={{flexDirection: 'row',alignItems: 'center'}}>
 					<Image
 						style={styles.profilePicture}
 						source={{uri: 'https://i.pinimg.com/280x280_RS/ed/ec/78/edec78ac2d3e5ea21020e946c54ae227.jpg'}}
