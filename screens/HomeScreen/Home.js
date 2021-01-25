@@ -6,16 +6,16 @@ import {
   View,
   Text,
   StatusBar,
-  Button
+  Button,
 } from 'react-native';
 
-import { Colors} from 'react-native/Libraries/NewAppScreen';
+import {Colors} from 'react-native/Libraries/NewAppScreen';
 
 const Home = ({navigation, route}) => {
   const previousScreen = route?.params?.previous
     ? route?.params?.previous
     : 'No Screen';
-    console.log('dsad',route?.params?.previous)
+  console.log('dsad', route?.params?.previous);
 
   return (
     <SafeAreaView>
