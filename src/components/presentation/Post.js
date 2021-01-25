@@ -9,15 +9,22 @@ import {
 } from 'react-native';
 import config from '../../config';
 
-const Post = () => {
+const Post = props => {
   const [screenWidth, setScreenWidth] = useState(null);
-  const [liked, setLiked] = useState(false);
+	const [liked, setLiked] = useState(false);
+	const [likes, setLikes] = useState(0);
 
   useEffect(() => {
+		setLikes(props.likes);
     setScreenWidth(Dimensions.get('window').width * 1.1);
   }, []);
 
   const likeToggle = () => {
+		if (liked) {
+			setLikes(likes - 1)
+		} else {
+			setLikes(likes + 1)
+		}
     setLiked(!liked);
   };
 
@@ -29,10 +36,10 @@ const Post = () => {
             style={styles.profilePicture}
             source={{
               uri:
-                'https://i.pinimg.com/280x280_RS/ed/ec/78/edec78ac2d3e5ea21020e946c54ae227.jpg',
+                props.profilePictureURL,
             }}
           />
-          <Text style={{marginLeft: 10}}>MiliPiliTestUser</Text>
+          <Text style={{marginLeft: 10}}>{props.userName}</Text>
         </View>
         <View
           style={{
@@ -49,7 +56,7 @@ const Post = () => {
           style={{width: screenWidth, height: 400, resizeMode: 'cover'}}
           source={{
             uri:
-              'https://www.collabary.com/wp-content/uploads/2017/06/Break-The-Instagram-%E2%80%93-How-To-Capture-And-Create-The-Perfect-Influencer-Photo.jpg',
+              props.pictureURL,
           }}
         />
       </TouchableOpacity>
@@ -66,7 +73,7 @@ const Post = () => {
           style={{height: 20, width: 20}}
           source={config.images.blackHeartIcon}
         />
-        <Text>128 Likes</Text>
+        <Text>{likes} Likes</Text>
       </View>
     </View>
   );
