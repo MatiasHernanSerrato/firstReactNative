@@ -1,34 +1,34 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Button } from 'react-native';
 
-const Login = ({navigation, route}) => {
-  const login = () => navigation.navigate('MainFeed');
+const Login = ({ navigation, route }) => {
+  const login = () => navigation.navigate('Tabs');
   return (
     <View style={styles.container}>
-      <View style={{flex: 1, width: 100 +'%', marginTop: 140}}>
-      <View>
-        <Text style={styles.title}>InstaMatt</Text>
-      </View>
-      <View>
-        <Text style={styles.greyText}>
-        Sign up to see photos and videos from your friends.
+      <View style={{ flex: 1, width: 100 + '%', marginTop: 140 }}>
+        <View>
+          <Text style={styles.title}>InstaMatt</Text>
+        </View>
+        <View>
+          <Text style={styles.greyText}>
+            Sign up to see photos and videos from your friends.
         </Text>
-      </View> 
-      <TouchableOpacity style={styles.loginButton} onPress={login}>
+        </View>
+        <TouchableOpacity style={styles.loginButton} onPress={login}>
           <Text style={styles.loginText}>Log In</Text>
-      </TouchableOpacity>
-      <View style={styles.orContainer}>
-        <View style={styles.separateLine} />
-          <Text style={{color: '#8e8e8e',fontWeight: 'bold', marginRight: 5, marginLeft: 5}}> OR </Text>
-        <View style={styles.separateLine} />
+        </TouchableOpacity>
+        <View style={styles.orContainer}>
+          <View style={styles.separateLine} />
+          <Text style={{ color: '#8e8e8e', fontWeight: 'bold', marginRight: 5, marginLeft: 5 }}> OR </Text>
+          <View style={styles.separateLine} />
+        </View>
+        <View style={{ marginBottom: 150 }}>
+          <Button onPress={() => alert('This should go to sing up screen')} title={'Sign up with email or phone number'} />
+        </View>
       </View>
-      <View style={{marginBottom: 150}}>
-        <Button onPress={()=> alert('This should go to sing up screen')} title={'Sign up with email or phone number'}/>
-      </View>
-      </View>
-      <View style={{marginTop: 10,height: 10+ '%'}}>
-        <Text style={{textAlign: 'center', color: '#8e8e8e',}}>from</Text>
-        <Text style={{textAlign: 'center', color: '#8e8e8e', fontWeight:'800'}}>MATT SERRATO</Text>
+      <View style={{ marginTop: 10, height: 10 + '%' }}>
+        <Text style={{ textAlign: 'center', color: '#8e8e8e', }}>from</Text>
+        <Text style={{ textAlign: 'center', color: '#8e8e8e', fontWeight: '800' }}>MATT SERRATO</Text>
       </View>
     </View>
   )
