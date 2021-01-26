@@ -4,7 +4,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
-import { MainFeed, Login, Profile, Camera } from './components/screens';
+import { MainFeed, Login, Profile, Camera, Register } from './components/screens';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -19,6 +19,15 @@ const Tabs = () => {
   )
 }
 
+const MainLoginScreen = () => {
+  return (
+    <Stack.Navigator initialRouteName={'Login'} screenOptions={{ headerShown: false }}>
+      <Stack.Screen name='Login' component={Login} />
+      <Stack.Screen name='Register' component={Register} />
+    </Stack.Navigator>
+  )
+}
+
 const InstaMatt = () => {
   return (
     <NavigationContainer>
@@ -26,7 +35,7 @@ const InstaMatt = () => {
         initialRouteName='Login'
         screenOptions={{ headerShown: false }}
       >
-        <Stack.Screen name='Login' component={Login} />
+        <Stack.Screen name='Login' component={MainLoginScreen} />
         <Stack.Screen name='Tabs' component={Tabs} />
       </Stack.Navigator>
     </NavigationContainer>
