@@ -1,37 +1,25 @@
+import 'react-native-gesture-handler';
 import React from 'react';
-import {Text, View, StyleSheet} from 'react-native';
-import PostFeed from './components/container';
 
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
 
+import { MainFeed, Login } from './components/screens';
+
+const Stack = createStackNavigator();
 
 const InstaMatt = () => {
   return (
-    <View style={styles.container}>
-      <View style={styles.tempNav}>
-        <Text>InstaMatt</Text>
-      </View>
-      <PostFeed />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator
+      initialRouteName='Login'
+      screenOptions={{headerShown:false}}
+      >
+        <Stack.Screen name='Login' component={Login} />
+        <Stack.Screen name='MainFeed' component={MainFeed}/>
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    width: 100 + '%',
-    height: 100 + '%',
-  },
-  tempNav: {
-    width: 100 + '%',
-    // alignSelf: 'stretch', in order to avoid the width with the % symbol
-    height: 55,
-    marginTop: 25,
-    backgroundColor: 'rgb(250, 250, 250)',
-    borderBottomColor: 'rgb(233,233,233)',
-    borderBottomWidth: StyleSheet.hairlineWidth,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-});
 
 export default InstaMatt;

@@ -12,22 +12,39 @@ import config from '../../config';
 const Post = props => {
   const [screenWidth, setScreenWidth] = useState(null);
 	const [liked, setLiked] = useState(false);
-	const [likes, setLikes] = useState(0);
+  const [likes, setLikes] = useState(0);
+  const [clickCount, setClickCount] = useState(0);
 
   useEffect(() => {
 		setLikes(props.likes);
     setScreenWidth(Dimensions.get('window').width * 1.1);
   }, []);
 
-  const likeToggle = () => {
-		if (liked) {
-			setLikes(likes - 1)
-		} else {
-			setLikes(likes + 1)
-		}
+  const likeOnPicture = () => {
+    if (clickCount == 1) {
+      if (liked) {
+        setLikes(likes - 1)
+      } else {
+        setLikes(likes + 1)
+      }
+      setLiked(!liked);
+    } else {
+      setClickCount(1);
+      setTimeout(()=>{
+          setClickCount(0)
+        }, 1000)
+    }
+  }
+  
+  const likeOnHeartButton = () => {
+    if (liked) {
+      setLikes(likes - 1)
+    } else {
+      setLikes(likes + 1)
+    }
     setLiked(!liked);
-  };
-
+  }
+ 
   return (
     <View>
       <View style={styles.userBar}>
@@ -50,8 +67,8 @@ const Post = props => {
           <Text style={{fontSize: 30}}>...</Text>
         </View>
       </View>
-			<TouchableOpacity onLongPress={() => alert('que me dejas apretado la concha de tu madre')}
-			activeOpacity={0.7} onPress={() => likeToggle()}>
+			<TouchableOpacity onLongPress={() => alert('the button was pressed for a long time')}
+			activeOpacity={0.7} onPress={() => likeOnPicture()}>
         <Image
           style={{width: screenWidth, height: 400, resizeMode: 'cover'}}
           source={{
@@ -61,19 +78,22 @@ const Post = props => {
         />
       </TouchableOpacity>
       <View style={styles.iconBar}>
+      <TouchableOpacity onLongPress={() => alert('the button was pressed for a long time')}
+			activeOpacity={0.7} onPress={() => likeOnHeartButton()}>
 				{
 				liked ? 
 					<Image style={styles.icon} source={config.images.redHeartIcon} /> : 
 					<Image style={styles.icon} source={config.images.heartIcon} />}
+          </TouchableOpacity>
         <Image style={styles.icon} source={config.images.messageIcon} />
         <Image style={styles.icon} source={config.images.arrowIcon} />
       </View>
       <View style={styles.iconBar}>
         <Image
-          style={{height: 20, width: 20}}
+          style={{marginLeft:12,height: 20, width: 20}}
           source={config.images.blackHeartIcon}
         />
-        <Text>{likes} Likes</Text>
+        <Text style={{marginLeft:3}}>{likes} Likes</Text>
       </View>
     </View>
   );
@@ -111,7 +131,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   icon: {
-    marginLeft: 5,
+    marginLeft: 15,
     height: 35,
     width: 35,
   },
