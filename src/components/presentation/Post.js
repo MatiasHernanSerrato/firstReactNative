@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   Image,
   Text,
@@ -11,12 +11,12 @@ import config from '../../config';
 
 const Post = props => {
   const [screenWidth, setScreenWidth] = useState(null);
-	const [liked, setLiked] = useState(false);
+  const [liked, setLiked] = useState(false);
   const [likes, setLikes] = useState(0);
   const [clickCount, setClickCount] = useState(0);
 
   useEffect(() => {
-		setLikes(props.likes);
+    setLikes(props.likes);
     setScreenWidth(Dimensions.get('window').width * 1.1);
   }, []);
 
@@ -30,12 +30,12 @@ const Post = props => {
       setLiked(!liked);
     } else {
       setClickCount(1);
-      setTimeout(()=>{
-          setClickCount(0)
-        }, 1000)
+      setTimeout(() => {
+        setClickCount(0)
+      }, 1000)
     }
   }
-  
+
   const likeOnHeartButton = () => {
     if (liked) {
       setLikes(likes - 1)
@@ -44,11 +44,11 @@ const Post = props => {
     }
     setLiked(!liked);
   }
- 
+
   return (
     <View>
       <View style={styles.userBar}>
-        <View style={{flexDirection: 'row', alignItems: 'center'}}>
+        <View style={{ flexDirection: 'row', alignItems: 'center' }}>
           <Image
             style={styles.profilePicture}
             source={{
@@ -56,7 +56,7 @@ const Post = props => {
                 props.profilePictureURL,
             }}
           />
-          <Text style={{marginLeft: 10}}>{props.userName}</Text>
+          <Text style={{ marginLeft: 10 }}>{props.userName}</Text>
         </View>
         <View
           style={{
@@ -64,13 +64,13 @@ const Post = props => {
             flexDirection: 'column',
             alignItems: 'center',
           }}>
-          <Text style={{fontSize: 30}}>...</Text>
+          <Text style={{ fontSize: 30 }}>...</Text>
         </View>
       </View>
-			<TouchableOpacity onLongPress={() => alert('the button was pressed for a long time')}
-			activeOpacity={0.7} onPress={() => likeOnPicture()}>
+      <TouchableOpacity onMagicTap={() => alert('hiciste el supuesto magic tap')} onLongPress={() => alert('the button was pressed for a long time')}
+        activeOpacity={0.7} onPress={() => likeOnPicture()}>
         <Image
-          style={{width: screenWidth, height: 400, resizeMode: 'cover'}}
+          style={{ width: screenWidth, height: 400, resizeMode: 'cover' }}
           source={{
             uri:
               props.pictureURL,
@@ -78,22 +78,22 @@ const Post = props => {
         />
       </TouchableOpacity>
       <View style={styles.iconBar}>
-      <TouchableOpacity onLongPress={() => alert('the button was pressed for a long time')}
-			activeOpacity={0.7} onPress={() => likeOnHeartButton()}>
-				{
-				liked ? 
-					<Image style={styles.icon} source={config.images.redHeartIcon} /> : 
-					<Image style={styles.icon} source={config.images.heartIcon} />}
-          </TouchableOpacity>
+        <TouchableOpacity onLongPress={() => alert('the button was pressed for a long time')}
+          activeOpacity={0.7} onPress={() => likeOnHeartButton()}>
+          {
+            liked ?
+              <Image style={styles.icon} source={config.images.redHeartIcon} /> :
+              <Image style={styles.icon} source={config.images.heartIcon} />}
+        </TouchableOpacity>
         <Image style={styles.icon} source={config.images.messageIcon} />
         <Image style={styles.icon} source={config.images.arrowIcon} />
       </View>
       <View style={styles.iconBar}>
         <Image
-          style={{marginLeft:12,height: 20, width: 20}}
+          style={{ marginLeft: 12, height: 20, width: 20 }}
           source={config.images.blackHeartIcon}
         />
-        <Text style={{marginLeft:3}}>{likes} Likes</Text>
+        <Text style={{ marginLeft: 3 }}>{likes} Likes</Text>
       </View>
     </View>
   );

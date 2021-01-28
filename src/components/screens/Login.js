@@ -1,8 +1,44 @@
-import React from 'react';
+import React, { useState } from 'react';
+import FingerprintScanner from 'react-native-fingerprint-scanner';
 import { View, Text, StyleSheet, TouchableOpacity, Button } from 'react-native';
+import { useEffect } from 'react/cjs/react.development';
 
 const Login = ({ navigation, route }) => {
   const register = () => navigation.navigate('Register');
+  const [biometryType, setBiometryType] = useState(null);
+
+  useEffect(() => {
+    FingerprintScanner.isSensorAvailable().then(type => {
+      setBiometryType(type)
+    })
+      .catch(err => console.log('isSensorAvailable error => ', err))
+  }, [])
+
+  const getMessage = () => {
+    if (biometryType == 'Face ID') {
+      return 'Scan your Face on the device to continue'
+    } else {
+      return 'Scan your Fingerprint on the device scanner to continue'
+    }
+  }
+
+  const showAuthenticationDialog = () => {
+    if (biometryType !== null && biometryType !== undefined) {
+      FingerprintScanner.authenticate({
+        description: getMessage(),
+        passcodeFallback: true,
+      }).then(() => {
+        alert('que lindo que sos')
+        return navigation.navigate('Tabs');
+      })
+        .catch((err) => {
+          console.log('Authentication error is => ', err);
+        });
+    } else {
+      console.log('biometric authentication is not available');
+    }
+  };
+
   return (
     <View style={styles.container}>
       <View style={{ flex: 1, width: 100 + '%', marginTop: 140 }}>
@@ -14,8 +50,8 @@ const Login = ({ navigation, route }) => {
             Sign up to see photos and videos from your friends.
         </Text>
         </View>
-        <TouchableOpacity style={styles.loginButton}>
-          <Text style={styles.loginText}>Log In</Text>
+        <TouchableOpacity onPress={showAuthenticationDialog} style={styles.loginButton}>
+          <Text style={styles.loginText}>Log In with Face ID or Passcode</Text>
         </TouchableOpacity>
         <View style={styles.orContainer}>
           <View style={styles.separateLine} />

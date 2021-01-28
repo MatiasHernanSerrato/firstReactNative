@@ -1,7 +1,7 @@
 import React from 'react';
-import {SafeAreaView, View, Text, Button} from 'react-native';
+import { SafeAreaView, View, Text, Button } from 'react-native';
 
-const SecondScreen = ({navigation, route}) => {
+const SecondScreen = ({ navigation, route }) => {
   return (
     <SafeAreaView>
       <Text>This is {route.params.name} profile</Text>
@@ -9,7 +9,7 @@ const SecondScreen = ({navigation, route}) => {
         <Button
           title="Go To Home Screen"
           onPress={() =>
-            navigation.navigate('Home', {previous: 'SecondScreen'})
+            navigation.navigate('Home', { previous: 'SecondScreen' })
           }
         />
       </View>
