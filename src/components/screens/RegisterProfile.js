@@ -14,15 +14,14 @@ const Login = ({ navigation, route }) => {
     if (username === 'Matt' && password === 'admin') return navigation.navigate('Tabs');
     return alert('User not found')
   }
-
   return (
     <View style={styles.container}>
       <View style={{ flex: 1, width: 100 + '%', marginTop: 140 }}>
         <View>
           <Text style={styles.title}>InstaMatt</Text>
         </View>
-        <TouchableOpacity onPress={() => navigation.navigate('RegisterProfile')} style={styles.loginButton}>
-          <Text style={styles.loginText}>Register new user</Text>
+        <TouchableOpacity style={styles.loginButton}>
+          <Text style={styles.loginText}>Continue with Facebook</Text>
         </TouchableOpacity>
         <View style={styles.orContainer}>
           <View style={styles.separateLine} />
@@ -33,8 +32,8 @@ const Login = ({ navigation, route }) => {
           <TextInput value={username} autoCorrect={false} onChangeText={text => handleCrentials(text, 'username')} placeholder={'Phone number, username or email'} style={styles.input} />
           <TextInput value={password} autoCorrect={false} onChangeText={text => handleCrentials(text, 'password')} placeholder={'Password'} style={styles.input} secureTextEntry />
           <Button title={'Forgot password?'} />
-          <TouchableOpacity onPress={register} style={styles.loginButton}>
-            <Text style={styles.loginText}>Log In</Text>
+          <TouchableOpacity style={styles.loginButton}>
+            <Text style={styles.loginText}>Register</Text>
           </TouchableOpacity>
         </View>
       </View>

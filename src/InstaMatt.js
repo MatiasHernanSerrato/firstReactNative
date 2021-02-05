@@ -4,7 +4,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
-import { MainFeed, Login, Profile, Camera, Register } from './components/screens';
+import { MainFeed, Login, Profile, Camera, Register, RegisterProfile } from './components/screens';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -24,6 +24,7 @@ const MainLoginScreen = () => {
     <Stack.Navigator initialRouteName={'Login'} screenOptions={{ headerShown: false }}>
       <Stack.Screen name='Login' component={Login} />
       <Stack.Screen name='Register' component={Register} />
+      <Stack.Screen name='RegisterProfile' component={RegisterProfile} />
     </Stack.Navigator>
   )
 }

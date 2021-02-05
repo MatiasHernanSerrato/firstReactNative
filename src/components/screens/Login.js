@@ -28,7 +28,6 @@ const Login = ({ navigation, route }) => {
         description: getMessage(),
         passcodeFallback: true,
       }).then(() => {
-        alert('que lindo que sos')
         return navigation.navigate('Tabs');
       })
         .catch((err) => {
